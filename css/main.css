@@ -1,0 +1,14 @@
+.jumbotron {
+  margin-top: 5em;
+  border: 1px solid black;
+}
+#description {
+  margin-top: -1.5em;
+}
+#main {
+  border: 1px solid black;
+  background-color: white;
+}
+#signature {
+  font-size: 1em;
+}
