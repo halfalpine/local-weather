@@ -43,6 +43,7 @@ window.onload = function() {
 
       function getDescription(data) {
         $("#description").html(data.current_observation.icon);
+        $("#description").addClass("description-lower");
       }
 
     };
