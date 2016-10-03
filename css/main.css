@@ -1,9 +1,12 @@
 .jumbotron {
   margin-top: 5em;
   border: 1px solid black;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.8);
 }
 #description {
   margin-top: -1.5em;
+  color: black;
 }
 #main {
   border: 1px solid black;
