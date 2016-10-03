@@ -3,10 +3,8 @@ window.onload = function() {
     navigator.geolocation.getCurrentPosition(showPosition);
 
     function showPosition(position) {
-      var lat = position.coords.latitude;
-      var long = position.coords.longitude;
       $.getJSON('https://api.wunderground.com/api/7d584a8cfc36f7d2/conditions/q/autoip.json', function(data) {
-        weather = data;
+        var weather = data;
         getLocation(weather);
         getIcon(weather);
         getDescription(weather);
@@ -17,12 +15,16 @@ window.onload = function() {
           $("#tempF").toggle();
           $("#tempC").toggle();
         });
-        $.getJSON('https://www.googleapis.com/customsearch/v1?q=new+york+city+rain+landscape&cx=006650813773390692218%3Af-cpsdbza5c&imgColorType=color&imgSize=large&imgType=photo&num=1&rights=cc_publicdomain&safe=high&searchType=image&key=AIzaSyDW-wSyxwEyZTX0O7NDrWpegksRdxSSoic', function(data) {
+
+        console.log(getMonth(weather));
+        // Google custom seach based on user location
+        $.getJSON('https://www.googleapis.com/customsearch/v1?q=' + weather.current_observation.display_location.city + '+' + weather.current_observation.display_location.state + '+' +  '+landscape+' + getMonth(weather) + '&cx=006650813773390692218%3Af-cpsdbza5c&imgColorType=color&imgSize=large&imgType=photo&num=1&rights=cc_publicdomain&safe=high&searchType=image&key=AIzaSyDW-wSyxwEyZTX0O7NDrWpegksRdxSSoic', function(data) {
           var bgImg = (data.items[0].link);
           console.log(bgImg);
           $('body').css({
             'background-image': 'url(' + bgImg + ')',
-            'background-size': 'cover'
+            'background-size': 'cover',
+            'background-repeat': 'no-repeat'
           });
         });
       });
@@ -49,8 +51,24 @@ window.onload = function() {
     $("#location").html(data.current_observation.display_location.full);
   }
 
+  function getGoogleLoc(data) {
+
+  }
+
   function getDescription(data) {
-    $("#description").html(data.current_observation.icon);
+    $("#description").html(data.current_observation.weather);
+  }
+
+  function getGoogleDescription(data) {
+    return data.current_observation.weather
+      .split(' ')
+      .join('+');
+  }
+
+  function getMonth(data) {
+    return data.current_observation.observation_time
+      .match(/(on\s)\w+/)[0]
+      .slice(3);
   }
 
 };
