@@ -51,12 +51,9 @@ window.onload = function() {
     $("#location").html(data.current_observation.display_location.full);
   }
 
-  function getGoogleLoc(data) {
-
-  }
-
   function getDescription(data) {
     $("#description").html(data.current_observation.weather);
+    $("#description").addClass("description-lower");
   }
 
   function getGoogleDescription(data) {
