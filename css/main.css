@@ -1,3 +1,7 @@
+html, body {
+  height: 100vh
+}
+
 .jumbotron {
   margin-top: 5em;
   border: 1px solid black;

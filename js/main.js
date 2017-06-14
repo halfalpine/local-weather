@@ -18,7 +18,7 @@ window.onload = function() {
 
         console.log(getMonth(weather));
         // Google custom seach based on user location
-        $.getJSON('https://www.googleapis.com/customsearch/v1?q=' + weather.current_observation.display_location.city + '+' + weather.current_observation.display_location.state + '+' +  '+landscape+' + getMonth(weather) + '&cx=006650813773390692218%3Af-cpsdbza5c&imgColorType=color&imgSize=large&imgType=photo&num=1&rights=cc_publicdomain&safe=high&searchType=image&key=AIzaSyDW-wSyxwEyZTX0O7NDrWpegksRdxSSoic', function(data) {
+        $.getJSON('https://www.googleapis.com/customsearch/v1?q=' + weather.current_observation.display_location.city + '+' + weather.current_observation.display_location.state + '+' + '+landscape+' + '&cx=006650813773390692218%3Af-cpsdbza5c&imgColorType=color&imgSize=large&imgType=photo&num=1&rights=cc_publicdomain&safe=high&searchType=image&key=AIzaSyDW-wSyxwEyZTX0O7NDrWpegksRdxSSoic', function(data) {
           var bgImg = (data.items[0].link);
           console.log(bgImg);
           $('body').css({
